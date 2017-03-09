@@ -23,12 +23,15 @@ public class Main {
         if ( letterText.length() > magazineText.length() ) {
             return false;
         }
-        Map<Character, Integer> mapMagazine = extractCharMap(magazineText);
+        int searchIndex;
         Map<Character, Integer> mapLetter = extractCharMap(letterText);
         for (Character c : mapLetter.keySet() ) {
-            if ( !mapMagazine.containsKey(c) || mapMagazine.get(c) < mapLetter.get(c) ) {
-                return false;
+            searchIndex = 0;
+            while ( ( searchIndex = magazineText.indexOf(c, searchIndex) + 1) > 0 ) {
+                mapLetter.put( c, mapLetter.get(c) - 1);
+                if (mapLetter.get(c) == 0) break;
             }
+            if ( mapLetter.get(c) > 0 ) return false;
         }
         return true;
     }
