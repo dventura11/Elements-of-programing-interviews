@@ -51,10 +51,7 @@ public class Main {
         while (left <= right) {
             middle = left + ((right - left) / 2);
             square = middle * middle;
-            if (square == n) {
-                return (int) middle;
-            }
-            if (square < n) {
+            if (square <= n) {
                 left = middle + 1;
             } else {
                 right = middle -1;
